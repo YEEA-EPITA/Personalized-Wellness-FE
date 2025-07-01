@@ -31,6 +31,7 @@ export default function Registerform() {
   const router = useRouter();
   const { isLoading, onSubmitFunction } = useSubmitFunction();
   const [isAccepted, setIsAccepted] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const {
     handleSubmit,
     control,
@@ -134,12 +135,19 @@ export default function Registerform() {
         <PrimaryButton
           buttonText="Google"
           type="button"
-          sx={{ backgroundColor: "red", "&:hover": { backgroundColor: "red" } }}
-          onClick={() =>
+          sx={{
+            backgroundColor: "red",
+            "&:hover": { backgroundColor: "red" },
+            height: "50px",
+          }}
+          onClick={() => {
+            setIsGoogleLoading(true);
             router.push(
               `${process.env.NEXT_PUBLIC_SERVER_JAVA_URL}/oauth2/authorization/google`
-            )
-          }
+            );
+          }}
+          disabled={isGoogleLoading}
+          loading={isGoogleLoading}
         />
 
         <div className={styles.alreadyHaveAccount}>
