@@ -45,7 +45,7 @@ export const handleAsyncRequest = async ({
         message: toastMessage.error.customMessage || message,
       });
 
-    // If node server cookie is expired
+    // TODO: Handle specific error types
     if (error?.err?.type === "INVALID_TOKEN") {
       dispatch(clearStore());
       window.location.href = "/auth/login";

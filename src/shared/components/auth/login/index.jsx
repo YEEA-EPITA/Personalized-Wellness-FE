@@ -22,9 +22,11 @@ import PrimaryButton from "@/shared/components/buttons/primaryButton";
 
 // Redux
 import { signInUser } from "@/shared/redux/slices/user";
+import { useState } from "react";
 
 export default function Loginform() {
   const { isLoading, onSubmitFunction } = useSubmitFunction();
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
 
   const {
@@ -89,12 +91,16 @@ export default function Loginform() {
           sx={{
             backgroundColor: "red",
             "&:hover": { backgroundColor: "red" },
+            height: "50px",
           }}
-          onClick={() =>
+          onClick={() => {
+            setIsGoogleLoading(true);
             router.push(
               `${process.env.NEXT_PUBLIC_SERVER_JAVA_URL}/oauth2/authorization/google`
-            )
-          }
+            );
+          }}
+          disabled={isGoogleLoading}
+          loading={isGoogleLoading}
         />
 
         <div className={styles.dontHaveAccount}>

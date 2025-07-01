@@ -14,6 +14,7 @@ export const AUTH_ROUTES = {
   register: path(AUTH_ROOT, "/register"),
   forgotPassword: path(AUTH_ROOT, "/forgotpassword"),
   termsAndConditions: path(AUTH_ROOT, "/terms"),
+  verifyToken: path(AUTH_ROOT, `/verify`),
 };
 
 export const DASHBOARD_ROUTES = {

@@ -75,6 +75,21 @@ export const createUser =
     dispatch(actions.setCurrentUser(body));
   };
 
+// Verify User
+export const verifyGoogleOAuth =
+  ({ token }) =>
+  async (dispatch) => {
+    const { error, body } = await handleAsyncRequest({
+      dispatch,
+      actions,
+      requestFn: getRequest({ server: SERVERS.java.value, headers: { token } }),
+      endpoint: `/google/profile`,
+      toastMessage: { success: { show: false }, error: { show: true } },
+    });
+    if (error) throw error;
+    dispatch(actions.setCurrentUser({ ...body, accessToken: token }));
+  };
+
 // Forget Password
 
 // Reset Password
