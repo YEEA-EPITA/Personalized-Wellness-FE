@@ -1,6 +1,5 @@
-// AccountsTab.jsx
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -36,10 +35,6 @@ export default function AccountsTab() {
 
   const { platforms, isLoading, fetchAccounts, deleteConnectedAccount } =
     usePlatformsStore();
-
-  useEffect(() => {
-    fetchAccounts();
-  }, [fetchAccounts]);
 
   const handleSearch = (e) => setSearch(e.target.value);
 

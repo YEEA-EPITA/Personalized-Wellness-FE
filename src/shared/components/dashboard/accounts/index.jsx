@@ -1,18 +1,15 @@
 "use client";
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
-import DialogComponent from "./servicesListDialogbox";
+import { useEffect } from "react";
 import AccountsTab from "./accountsTab";
-import { fetchAccountsList } from "@/shared/redux/slices/platforms";
-import { useDispatch } from "react-redux";
+import usePlatformsStore from "@/shared/zustand/stores/usePlatformsStore";
 
 export default function LinkAccounts() {
-  const [openDialog, setOpenDialog] = useState(false);
-  const dispatch = useDispatch();
+  const { fetchAccounts } = usePlatformsStore();
 
   useEffect(() => {
-    dispatch(fetchAccountsList());
-  }, []);
+    fetchAccounts();
+  }, [fetchAccounts]);
 
   return (
     <Box>
