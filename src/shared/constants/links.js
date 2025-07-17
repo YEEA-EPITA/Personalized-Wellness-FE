@@ -29,4 +29,11 @@ export const SIDEBAR_LINKS = {
     icon: "/images/dashboard/profile.svg",
     allowed: [],
   },
+  Tasks: {
+    id: 5,
+    title: "Tasks",
+    path: DASHBOARD_ROUTES.tasks,
+    icon: "/images/dashboard/calander.svg",
+    allowed: [],
+  },
 };
