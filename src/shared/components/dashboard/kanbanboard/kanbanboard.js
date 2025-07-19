@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { DragDropContext } from "@hello-pangea/dnd";
-import KanbanColumn from "./KanbanColumn";
+import KanbanColumn from "./kanbanColumn";
 import AddTaskDialog from "./AddTaskDialog";
 import CustomAlert from "@/shared/components/general/CustomAlert";
 import usePlatformsStore from "@/shared/zustand/stores/usePlatformsStore";
