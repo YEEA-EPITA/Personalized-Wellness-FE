@@ -1,18 +1,21 @@
-import { Paper, Typography, Button, Stack } from "@mui/material";
-import KanbanCard from "@/shared/components/dashboard/kanbanboard/kanbanCard";
+"use client";
+import React from "react";
+import { Paper, Typography, Stack, Button } from "@mui/material";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
+import KanbanTask from "./KanbanTask";
 
 const KanbanColumn = ({
   column,
   tasks,
-  onAdd,
-  onEdit,
-  onDelete,
-  loadingTasks,
+  onAddClick,
+  onEditTask,
+  onDeleteTask,
+  deletingTaskId,
+  isFirstColumn = false, // New prop to identify first column
 }) => {
   return (
     <Droppable droppableId={column.id}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <Paper
           ref={provided.innerRef}
           {...provided.droppableProps}
@@ -20,9 +23,10 @@ const KanbanColumn = ({
             p: 2,
             width: "100%",
             minHeight: 500,
-            bgcolor: "#f9fafb",
+            bgcolor: snapshot.isDraggingOver ? "#e3f2fd" : "#f9fafb",
             borderRadius: 2,
             boxShadow: 2,
+            transition: "background 0.2s",
           }}
         >
           <Stack
@@ -31,32 +35,56 @@ const KanbanColumn = ({
             alignItems="center"
             mb={2}
           >
-            <Typography variant="h6">{column.title}</Typography>
-            {column.id === "todo" && (
-              <Button size="small" variant="outlined" onClick={onAdd}>
-                + Add
+            <Typography variant="h6" fontWeight={600} align="center">
+              {column.title}
+            </Typography>
+            {/* Show Add Task button only on the first column (language-independent) */}
+            {onAddClick && isFirstColumn && (
+              <Button
+                size="small"
+                variant="outlined"
+                onClick={() => onAddClick(column)}
+              >
+                + Add Task
               </Button>
             )}
           </Stack>
-          {tasks.map((task, index) => (
-            <Draggable draggableId={task.id} index={index} key={task.id}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <KanbanCard
-                    task={task}
-                    onEdit={onEdit}
-                    onDelete={onDelete}
-                    isDeleting={loadingTasks[task.id]}
-                  />
-                </div>
-              )}
-            </Draggable>
-          ))}
-          {provided.placeholder}
+          <Stack spacing={2}>
+            {tasks.length === 0 ? (
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                align="center"
+                sx={{ mt: 10 }}
+              >
+                No tasks here
+              </Typography>
+            ) : (
+              tasks.map((task, index) => (
+                <Draggable key={task.id} draggableId={task.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={{
+                        ...provided.draggableProps.style,
+                        opacity: snapshot.isDragging ? 0.7 : 1,
+                      }}
+                    >
+                      <KanbanTask
+                        task={task}
+                        onEdit={onEditTask}
+                        onDelete={onDeleteTask}
+                        isDeleting={deletingTaskId === task.id}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))
+            )}
+            {provided.placeholder}
+          </Stack>
         </Paper>
       )}
     </Droppable>

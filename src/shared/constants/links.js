@@ -22,18 +22,18 @@ export const SIDEBAR_LINKS = {
     icon: "/images/dashboard/user.svg",
     allowed: [],
   },
-  profile: {
-    id: 4,
-    title: "Profile",
-    path: DASHBOARD_ROUTES.profile,
-    icon: "/images/dashboard/profile.svg",
-    allowed: [],
-  },
   Tasks: {
-    id: 5,
+    id: 4,
     title: "Tasks",
     path: DASHBOARD_ROUTES.tasks,
     icon: "/images/dashboard/calander.svg",
+    allowed: [],
+  },
+  profile: {
+    id: 5,
+    title: "Profile",
+    path: DASHBOARD_ROUTES.profile,
+    icon: "/images/dashboard/profile.svg",
     allowed: [],
   },
 };

@@ -1,21 +1,26 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import KanbanBoard from "@/shared/components/dashboard/kanbanboard/kanbanboard";
 import SelectorComponent from "@/shared/components/general/selectorComponent";
 import usePlatformsStore from "@/shared/zustand/stores/usePlatformsStore";
 import { PLATFORMS } from "@/shared/constants/platforms";
 import { Box, Button, Grid, Typography, Stack } from "@mui/material";
-import { transformToBoardData } from "@/shared/utils/general";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import KanbanBoard from "./kanbanboard";
+import {
+  formatJiraTasksToKanban,
+  formatTrelloTasksToKanban,
+} from "@/shared/utils/general";
 
 const TasksComponent = () => {
   const [selectPlatform, setSelectedPlatform] = useState("");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedProject, setSelectedProject] = useState("");
-  const [boardData, setBoardData] = useState(transformToBoardData([]));
   const [isFetching, setIsFetching] = useState(false);
+  const [isFetchingTrelloLists, setIsFetchingTrelloLists] = useState(false);
+  const [kanbanboardData, setKanbanBoardData] = useState({});
   const [onBreak, setOnBreak] = useState(false);
 
   const {
@@ -26,6 +31,8 @@ const TasksComponent = () => {
     fetchTrelloBoards,
     trelloBoardsList,
     fetchTrelloTasks,
+    fetchTrelloLists,
+    trelloListsIds,
   } = usePlatformsStore();
 
   const platformOptions = Object.values(PLATFORMS).map((platform) => ({
@@ -44,6 +51,7 @@ const TasksComponent = () => {
     id: project.key,
     name: project.name,
     key: project.key,
+    cloudId: project.cloudId,
   }));
 
   const trelloBoardsOptions = trelloBoardsList.map((board) => ({
@@ -66,12 +74,22 @@ const TasksComponent = () => {
     setSelectedProject("");
   }, [selectPlatform]);
 
+  useEffect(() => {
+    if (selectPlatform === PLATFORMS.trello.value && selectedProject) {
+      setIsFetchingTrelloLists(true);
+      fetchTrelloLists({
+        email: selectedAccount,
+        boardId: selectedProject,
+      }).finally(() => setIsFetchingTrelloLists(false));
+    }
+  }, [selectedProject]);
+
   const handleFetch = async () => {
     if (!selectPlatform || !selectedAccount || !selectedProject) {
-      alert("Please select platform, account, and project.");
       return;
     }
     setIsFetching(true);
+
     if (selectPlatform === PLATFORMS.jira.value) {
       const payload = {
         jiraEmail: selectedAccount,
@@ -79,16 +97,20 @@ const TasksComponent = () => {
         startDate: "2025-01-01",
         endDate: "2025-12-31",
       };
-      const tasks = await fetchJiraTasks(payload);
-      const boardDatas = transformToBoardData(tasks);
-      setBoardData(boardDatas);
+      const tasks = await fetchJiraTasks({ payload }).finally(() =>
+        setIsFetching(false)
+      );
+      setKanbanBoardData(formatJiraTasksToKanban(tasks));
     } else if (selectPlatform === PLATFORMS.trello.value) {
-      const tasks = await fetchTrelloTasks({
-        email: selectedAccount,
-      });
-      setBoardData(transformToBoardData(tasks, PLATFORMS.trello.value));
+      const payload = {
+        trelloEmail: selectedAccount,
+        listIds: trelloListsIds.map((list) => list.id),
+      };
+      const tasks = await fetchTrelloTasks({ payload }).finally(() =>
+        setIsFetching(false)
+      );
+      setKanbanBoardData(formatTrelloTasksToKanban(tasks, trelloListsIds));
     }
-    setIsFetching(false);
   };
 
   const handleBreak = () => {
@@ -98,7 +120,7 @@ const TasksComponent = () => {
   return (
     <Box>
       <Grid container spacing={2} mb={2}>
-        <Grid size={{ sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <SelectorComponent
             lable="Platforms"
             options={platformOptions}
@@ -106,7 +128,7 @@ const TasksComponent = () => {
             onChange={setSelectedPlatform}
           />
         </Grid>
-        <Grid size={{ sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <SelectorComponent
             lable="Accounts"
             options={filteredAccounts}
@@ -116,9 +138,11 @@ const TasksComponent = () => {
             disabled={!selectPlatform}
           />
         </Grid>
-        <Grid size={{ sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <SelectorComponent
-            lable="Projects"
+            lable={
+              isFetchingTrelloLists ? "Fetching Lists..." : "Projects/Boards"
+            }
             options={
               selectPlatform === PLATFORMS.jira.value
                 ? jiraProjectsOptions
@@ -127,10 +151,10 @@ const TasksComponent = () => {
             value={selectedProject}
             onChange={setSelectedProject}
             valueKey={selectPlatform === PLATFORMS.jira.value ? "key" : "id"}
-            disabled={!selectedAccount}
+            disabled={!selectedAccount || isFetchingTrelloLists}
           />
         </Grid>
-        <Grid size={{ sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <Button
             fullWidth
             variant="outlined"
@@ -151,6 +175,7 @@ const TasksComponent = () => {
               !selectPlatform ||
               !selectedAccount ||
               !selectedProject ||
+              isFetchingTrelloLists ||
               isFetching
             }
           >
@@ -190,10 +215,15 @@ const TasksComponent = () => {
       </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <KanbanBoard
-          kandboardData={boardData}
+          boardData={kanbanboardData}
           platform={selectPlatform}
-          account={selectedAccount}
-          selectedProjectKey={selectedProject}
+          accountEmail={selectedAccount}
+          projectKey={selectedProject}
+          cloudId={
+            jiraProjectsOptions.find((p) => p.key === selectedProject)
+              ?.cloudId || ""
+          }
+          trelloLists={trelloListsIds} // Pass Trello lists for intelligent mapping
         />
       </LocalizationProvider>
     </Box>

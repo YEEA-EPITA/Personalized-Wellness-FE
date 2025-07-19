@@ -149,17 +149,12 @@ const usePlatformsStore = create(
         },
 
         // Fetch Jira Tasks
-        fetchJiraTasks: async ({
-          jiraEmail = "",
-          jiraProjects = [],
-          startDate = "2025-01-01T00:00:00.000+0100",
-          endDate = "2025-12-31T23:59:59.999+0100",
-        }) => {
+        fetchJiraTasks: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
             const response = await postRequest({ server: SERVERS.java.value })({
               endpoint: `/jira/tasks`,
-              payload: { jiraEmail, jiraProjects, startDate, endDate },
+              payload,
             });
 
             get().setJiraTasksList(response.data.body);
@@ -173,6 +168,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Create Jira Task
         createJiraTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
@@ -190,6 +186,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Update Jira Task
         updateJiraTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
@@ -207,17 +204,17 @@ const usePlatformsStore = create(
           }
         },
 
+        // Update Jira Task Status
         updateJiraTaskStatus: async ({ payload }) => {
           console.log(payload);
           set({ isLoading: true, error: null });
           try {
-            const response = await putRequest({ server: SERVERS.java.value })({
+            const response = await postRequest({ server: SERVERS.java.value })({
               endpoint: `/jira/status/update`,
               payload,
             });
             return response.data.body;
           } catch (err) {
-            showToastUtils({ type: "error", message: err.message });
             set({ error: err });
             throw err;
           } finally {
@@ -225,6 +222,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Delete Jira Task
         deleteJiraTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
@@ -234,7 +232,6 @@ const usePlatformsStore = create(
             });
             return response.data.body;
           } catch (err) {
-            showToastUtils({ type: "error", message: err.message });
             set({ error: err });
             throw err;
           } finally {
@@ -249,12 +246,7 @@ const usePlatformsStore = create(
             const response = await getRequest({ server: SERVERS.java.value })({
               endpoint: `/trello/boards?trelloEmail=${email}`,
             });
-
             get().setTrelloBoardsList(response.data.body);
-            const lists = await get().fetchTrelloLists({
-              email,
-              boardId: response.data.body[0]?.id,
-            });
             return response.data.body.boards;
           } catch (err) {
             showToastUtils({ type: "error", message: err.message });
@@ -275,9 +267,11 @@ const usePlatformsStore = create(
               },
             });
             const listsObj = response.data || {};
-
             const transformedLists = Object.entries(listsObj)[0][1].map(
-              (list) => list.id
+              (list) => ({
+                id: list.id,
+                name: list.name,
+              })
             );
             get().setTrelloListsIds(transformedLists);
             return transformedLists;
@@ -289,18 +283,14 @@ const usePlatformsStore = create(
         },
 
         // Fetch Trello Tasks
-        fetchTrelloTasks: async ({ email }) => {
+        fetchTrelloTasks: async ({ payload }) => {
           set({ isLoading: true, error: null });
+          console.log(payload);
           try {
-            const payload = {
-              trelloEmail: email,
-              listIds: get().trelloListsIds,
-            };
             const response = await postRequest({ server: SERVERS.java.value })({
               endpoint: `/trello/cards/from-lists`,
               payload,
             });
-
             return response.data.body;
           } catch (err) {
             showToastUtils({ type: "error", message: err.message });
@@ -311,6 +301,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Create Trello Task
         createTrelloTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
@@ -328,6 +319,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Update Trello Task
         updateTrelloTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
@@ -345,6 +337,7 @@ const usePlatformsStore = create(
           }
         },
 
+        // Delete Trello Task
         deleteTrelloTask: async ({ payload }) => {
           set({ isLoading: true, error: null });
           try {
