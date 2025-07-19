@@ -35,10 +35,16 @@ const TasksComponent = () => {
     trelloListsIds,
   } = usePlatformsStore();
 
-  const platformOptions = Object.values(PLATFORMS).map((platform) => ({
-    id: platform.value,
-    name: platform.name,
-  }));
+  const platformOptions = Object.values(PLATFORMS)
+    .filter(
+      (platform) =>
+        platform.value === PLATFORMS.jira.value ||
+        platform.value === PLATFORMS.trello.value
+    )
+    .map((platform) => ({
+      id: platform.value,
+      name: platform.name,
+    }));
 
   const filteredAccounts = accounts
     .filter((acc) => acc.type === selectPlatform)
