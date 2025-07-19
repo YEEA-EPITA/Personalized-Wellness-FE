@@ -29,8 +29,8 @@ export default function Sidebar({ handleToggle = () => {} }) {
       <Image
         src={"/images/dashboard/light-logo.png"}
         alt="light-logo.png"
-        width={200}
-        height={70}
+        width={160}
+        height={60}
         style={{ margin: "10px 0px 2px 10px", cursor: "pointer" }}
         priority
       />
