@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { AUTH_ROUTES } from "@/shared/utils/paths";
+import LandingPage from "@/shared/components/landing/LandingPage";
 
 export default function Home() {
-  redirect(AUTH_ROUTES.login);
+  return <LandingPage />;
 }
