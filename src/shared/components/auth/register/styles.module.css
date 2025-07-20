@@ -1,81 +1,512 @@
+/* Auth Container */
+.authContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Left Side - Branding */
+.brandingSide {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.brandingSide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="400" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="80" fill="url(%23a)"/></svg>')
+    no-repeat center;
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.brandingContent {
+  position: relative;
+  z-index: 2;
+  max-width: 450px;
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.logoIcon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  background: linear-gradient(
+    135deg,
+    var(--wellness-accent, #ffd89b) 0%,
+    var(--secondary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.featureIcon {
+  font-size: 1.25rem;
+}
+
+/* Right Side - Form */
+.formSide {
+  background: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 1.5rem;
+}
+
+.formSide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(51, 153, 254, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
 .title {
-  color: var(--primary-color);
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #2d3748);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
-.subTitle {
-  color: #94a3b8;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.container {
-  max-width: 550px;
-  padding: 0 20px;
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary, #64748b);
+  line-height: 1.5;
+  opacity: 0.8;
 }
 
 .form {
-  margin-top: 20px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.alreadyHaveAccount {
-  text-align: center;
-  margin: 20px 0;
-  font-weight: 500;
+/* Input Groups */
+.nameRow,
+.passwordRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.alreadyHaveAccount a {
-  color: var(--primary-color);
+.inputGroup {
+  margin-bottom: 1rem;
+  width: 100%;
+  min-height: 80px; /* Fixed height to prevent layout shifts on errors */
 }
 
-.footer {
-  text-align: center;
-  margin: 20px 0;
-  font-weight: 500;
+.inputWrapper {
+  position: relative;
+  width: 100%;
 }
 
-.terms {
-  color: var(--primary-color);
-  cursor: pointer;
-  text-decoration: underline;
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 63%;
+  transform: translateY(-50%);
+  color: var(--text-secondary, #64748b);
+  font-size: 1rem;
+  z-index: 1;
+  transition: all 0.2s ease;
 }
 
-.divider {
-  text-align: center;
-  margin: 5px 0;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: normal;
-  color: #888;
+/* Terms and Conditions */
+.termsWrapper {
+  margin: 1rem 0;
 }
 
 .termsCheckbox {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0;
-  font-size: 14px;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  line-height: 1.5;
 }
 
-.termsCheckbox label a {
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.checkboxText {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #64748b);
+  flex: 1;
+}
+
+.termsLink {
   color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.termsLink:hover {
   text-decoration: underline;
 }
 
-.errorText {
-  color: red;
-  font-size: 13px;
-  margin-top: -6px;
-  margin-bottom: 10px;
+/* Buttons */
+.submitButtonWrapper {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 1920px) {
-  .container {
-    margin-top: 50px;
+.primaryBtn {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(51, 153, 254, 0.3);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnIcon {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.primaryBtn:hover .btnIcon {
+  transform: translateX(2px);
+}
+
+.googleBtn {
+  width: 100%;
+  background: #ffffff;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.googleBtn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.googleBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.googleIcon {
+  color: #ea4335;
+  font-size: 1.1rem;
+}
+
+/* Divider */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1rem 0;
+  color: var(--text-secondary, #64748b);
+  font-size: 0.9rem;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+  z-index: 1;
+}
+
+.divider span {
+  background: white;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Login Prompt */
+.loginPrompt {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #64748b);
+}
+
+.loginLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+/* Loader */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .authContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .brandingSide {
+    display: none;
+  }
+
+  .formSide {
+    height: 100vh;
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+
+  .formContainer {
+    min-height: calc(100vh - 2rem);
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .formSide {
+    padding: 1rem 0.75rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .nameRow,
+  .passwordRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .inputGroup {
+    margin-bottom: 0.75rem;
+    min-height: 75px;
+  }
+
+  .formContainer {
+    max-width: 100%;
+  }
+
+  .formHeader {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formSide {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .inputGroup {
+    margin-bottom: 0.5rem;
+    min-height: 70px;
+  }
+
+  .primaryBtn,
+  .googleBtn {
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+.inputWrapper :global(.MuiTextField-root) {
+  width: 100%;
+}
+
+.inputWrapper :global(.MuiOutlinedInput-root) {
+  border-radius: 12px !important;
+  background: #f9fafb !important;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb !important;
+}
+
+.inputWrapper :global(.MuiOutlinedInput-root:hover) {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}
+
+.inputWrapper :global(.MuiOutlinedInput-root.Mui-focused) {
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(51, 153, 254, 0.1) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.inputWrapper :global(.MuiOutlinedInput-notchedOutline) {
+  border: none !important;
+}
+
+.inputWrapper :global(.MuiFormHelperText-root) {
+  margin-top: 4px;
+  color: #ef4444;
+}
+
+.inputWrapper :global(.MuiInputLabel-shrink) {
+  color: var(--primary-color) !important;
 }
