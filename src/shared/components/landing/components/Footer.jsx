@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import styles from "@/shared/components/landing/LandingPage.module.css";
+import { Link } from "@mui/material";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -84,9 +85,8 @@ const Footer = () => {
       },
     ],
     bottomLinks: [
-      { text: "Privacy Policy", href: "#privacy" },
-      { text: "Terms of Service", href: "#terms" },
-      { text: "Cookie Policy", href: "#cookies" },
+      { text: "Privacy Policy", href: "/privacy" },
+      { text: "Terms of Service", href: "/terms" },
     ],
   };
 
@@ -184,9 +184,9 @@ const Footer = () => {
             </p>
             <div className={styles.footerBottomLinks}>
               {footerData.bottomLinks.map((link, index) => (
-                <a key={index} href={link.href}>
+                <Link key={index} href={link.href}>
                   {link.text}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

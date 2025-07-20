@@ -9,6 +9,12 @@ export const ROOT_ROUTE = "/";
 export const AUTH_ROOT = "/auth";
 export const DASHBOARD_ROOT = "/dashboard";
 
+export const PUBLIC_ROUTES = {
+  home: path(ROOT_ROUTE, "/"),
+  privacy: path(ROOT_ROUTE, "/privacy"),
+  terms: path(ROOT_ROUTE, "/terms"),
+};
+
 export const AUTH_ROUTES = {
   login: path(AUTH_ROOT, "/login"),
   register: path(AUTH_ROOT, "/register"),
