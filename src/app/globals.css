@@ -2,10 +2,60 @@
   --primary-color: #3399fe;
   --secondary-color: #ebf5ffff;
   --dashboard-sidebar: #080326;
+  --wellness-primary: #667eea;
+  --wellness-secondary: #764ba2;
+  --wellness-accent: #ffd89b;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --background-light: #f7fafc;
+  --white: #ffffff;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--white);
+}
+
+/* Improved button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wellness-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wellness-secondary);
 }
