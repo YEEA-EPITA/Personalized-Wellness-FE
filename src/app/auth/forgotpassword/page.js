@@ -5,10 +5,7 @@ import VerifyOtp from "@/shared/components/auth/forgotpassword/verifyOtp";
 import ResetPassword from "@/shared/components/auth/forgotpassword/resetPassword";
 
 export default function ForgotPasswordPage() {
-  const params = useSearchParams();
-  const step = params.get("step");
-  const email = params.get("email");
-
+  const step ='useSearchParams().get("step");'
   if (step === "verifyOtp") return <VerifyOtp email={email} />;
   if (step === "resetPassword") return <ResetPassword email={email} />;
 
