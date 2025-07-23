@@ -1,0 +1,59 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+/* @import url("https://cdn.syncfusion.com/ej2/material-dark.css"); */
+
+/* Ensure the toolbar and header are visible */
+.e-schedule .e-schedule-toolbar {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+.e-schedule .e-toolbar-item {
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+.e-schedule .e-toolbar .e-btn {
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* Make hour slots smaller to show more schedule */
+.e-schedule .e-time-cells-wrap .e-schedule-table tr {
+  height: 20px !important; /* Made even smaller from 30px */
+}
+
+.e-schedule .e-content-wrap .e-content-table tr {
+  height: 20px !important;
+}
+
+.e-schedule .e-time-cells-wrap .e-schedule-table td.e-time-cells {
+  height: 20px !important;
+  line-height: 20px !important;
+}
+
+/* Adjust work cells height in week/day view */
+.e-schedule .e-work-cells {
+  height: 20px !important;
+}
+
+/* Adjust time slot text size for better fit */
+.e-schedule .e-time-cells .e-time-text {
+  font-size: 10px !important;
+  line-height: 20px !important;
+}
+
+/* Compact month view cells */
+.e-schedule .e-month-view .e-work-cells {
+  min-height: 40px !important;
+}
+
+/* Adjust all-day area height */
+.e-schedule .e-all-day-cells {
+  height: 25px !important;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

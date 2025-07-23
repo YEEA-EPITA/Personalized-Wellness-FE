@@ -1,5 +1,15 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import '@syncfusion/ej2-react-schedule/styles/material.css'; // ✅ global style import
+
+
+// Register Syncfusion license
+import { registerLicense } from '@syncfusion/ej2-base';
+
+// Register the license key from environment variable
+if (process.env.NEXT_PUBLIC_SYNCFUSION_LICENSE_KEY) {
+  registerLicense(process.env.NEXT_PUBLIC_SYNCFUSION_LICENSE_KEY);
+}
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
