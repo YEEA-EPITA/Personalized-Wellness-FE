@@ -25,7 +25,7 @@ export const AUTH_ROUTES = {
 
 export const DASHBOARD_ROUTES = {
   home: path(DASHBOARD_ROOT, "/home"),
-  calander: path(DASHBOARD_ROOT, "/calander"),
+  calendar: path(DASHBOARD_ROOT, "/calendar"),
   accounts: path(DASHBOARD_ROOT, "/accounts"),
   profile: path(DASHBOARD_ROOT, "/profile"),
   tasks: path(DASHBOARD_ROOT, "/tasks"),

@@ -17,11 +17,12 @@ const usePlatformsStore = create(
         accounts: [],
         isLoading: false,
         error: null,
+        calendarStarttime: new Date(),
+        calendarEndtime: new Date(),
         jiraProjectsList: [],
         jiraTasksList: [],
         trelloBoardsList: [],
         trelloListsIds: [],
-
         setPlatforms: (data) => set({ platforms: data }),
         setAccounts: (data) => set({ accounts: data }),
         removePlatform: (platformId) =>
@@ -49,6 +50,9 @@ const usePlatformsStore = create(
             isLoading: false,
             error: null,
           }),
+
+          setCalendarStarttime: (date) => set({ calendarStarttime: date }),
+          setCalendarEndtime: (date) => set({ calendarEndtime: date }),
 
         generateGoogleAuthUrl: async () => {
           try {
@@ -364,7 +368,7 @@ const usePlatformsStore = create(
         // partialize: (state) => ({ platforms: state.platforms }),
         migrate: (persistedState, version) => {
           if (typeof persistedState !== "object" || !persistedState.platforms) {
-            return { platforms: [], isLoading: false, error: null };
+            return { platforms: [], calendarStarttime: new Date(), calendarEndtime: new Date(), isLoading: false, error: null };
           }
           return persistedState;
         },

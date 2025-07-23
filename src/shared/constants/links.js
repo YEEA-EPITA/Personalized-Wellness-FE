@@ -8,10 +8,10 @@ export const SIDEBAR_LINKS = {
     icon: "/images/dashboard/home.svg",
     allowed: [],
   },
-  Calander: {
+  Calendar: {
     id: 2,
-    title: "Calander",
-    path: DASHBOARD_ROUTES.calander,
+    title: "Calendar",
+    path: DASHBOARD_ROUTES.calendar,
     icon: "/images/dashboard/calander.svg",
     allowed: [],
   },
