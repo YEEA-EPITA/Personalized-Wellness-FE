@@ -19,7 +19,7 @@ const commonFieldsSchema = {
 
 export const loginUserSchema = Yup.object().shape({
   email: commonFieldsSchema.email,
-  password: commonFieldsSchema.password,
+  password: Yup.string().required("Password is required"),
 });
 
 export const registerUserSchema = Yup.object().shape({
@@ -27,7 +27,7 @@ export const registerUserSchema = Yup.object().shape({
   password: commonFieldsSchema.password,
   confirmPassword: commonFieldsSchema.confirmPassword,
   firstName: Yup.string().min(1).max(255),
-  lastName: Yup.string().min(1).max(255)
+  lastName: Yup.string().min(1).max(255),
 });
 
 export const sendResetPasswordLinkSchema = Yup.object().shape({
