@@ -50,7 +50,7 @@ const TasksComponent = () => {
     .filter((acc) => acc.type === selectPlatform)
     .map((acc) => ({
       id: acc.id,
-      name: acc.email,
+      name: acc?.platformEmail || acc.email,
     }));
 
   const jiraProjectsOptions = jiraProjectsList.map((project) => ({
