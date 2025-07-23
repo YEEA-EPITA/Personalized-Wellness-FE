@@ -53,7 +53,7 @@ export default function AccountCard({
         <Box>
           <Typography fontWeight={600}>{account.name}</Typography>
           <Typography variant="body2" color="text.secondary">
-            {account.email}
+            {account?.platformEmail || account?.email}
           </Typography>
         </Box>
       </Box>

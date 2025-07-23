@@ -53,9 +53,7 @@ export default function TopBar({ drawerWidth, handleDrawerToggle }) {
             noWrap
             fontWeight={600}
             fontSize={{ xs: 20, md: 30 }}
-          >
-            Welcome
-          </Typography>
+          ></Typography>
           <Box display={"flex"} alignItems={"center"} gap={2}>
             <Typography
               variant="h6"
