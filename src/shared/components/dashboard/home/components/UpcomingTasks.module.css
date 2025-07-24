@@ -1,0 +1,348 @@
+/* Upcoming Tasks */
+.upcomingTasks {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.taskCount {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.headerIcon {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.viewAllBtn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewAllBtn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.taskCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.taskCard:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.taskCard.completed {
+  opacity: 0.7;
+  background: #f8fdf8;
+  border-color: #10b981;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkboxBtn {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkboxBtn:hover {
+  border-color: var(--primary-color);
+}
+
+.checkIcon {
+  font-size: 0.75rem;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.checkIcon.checked {
+  color: white;
+}
+
+.taskCard.completed .checkboxBtn {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.taskContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.taskTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.taskCard.completed .taskTitle {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.taskMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dueDate {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.clockIcon {
+  font-size: 0.75rem;
+}
+
+.today {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.priorityIcon {
+  font-size: 0.75rem;
+}
+
+.priorityText {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.taskActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.platform {
+  display: flex;
+  align-items: center;
+}
+
+.platformIcon {
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.moreBtn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.moreBtn:hover {
+  background: #f1f5f9;
+  color: var(--text-primary);
+}
+
+.completedBadge {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: #ecfdf5;
+  border: 1px solid #d1fae5;
+  border-radius: 8px;
+  color: #065f46;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.emptyDescription {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.addTaskBtn {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.addTaskBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(51, 153, 254, 0.3);
+}
+
+.plusIcon {
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upcomingTasks {
+    padding: 1.25rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .headerContent {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .viewAllBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .taskMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upcomingTasks {
+    padding: 1rem;
+  }
+
+  .taskCard {
+    padding: 0.875rem;
+  }
+
+  .taskHeader {
+    gap: 0.5rem;
+  }
+
+  .taskActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+}

@@ -1,0 +1,371 @@
+/* Wellness Insights */
+.wellnessInsights {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.headerIcon {
+  color: #ec4899;
+  font-size: 1.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Overall Score */
+.overallScore {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+  border-radius: 16px;
+  border: 1px solid #e9d5ff;
+}
+
+.scoreCircle {
+  flex-shrink: 0;
+}
+
+.scoreProgress {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.scoreInner {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scoreNumber {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.scoreUnit {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.scoreInfo {
+  flex: 1;
+}
+
+.scoreLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.scoreDescription {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Insights List */
+.insightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.insightItem {
+  padding: 1rem;
+  background: #fafbfc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.insightItem:hover {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.insightHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.insightIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.insightContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.insightTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.insightCategory {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insightTrend {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.trendIcon {
+  font-size: 1rem;
+}
+
+.insightScore {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insightProgress {
+  margin-bottom: 0.75rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease-out;
+  position: relative;
+}
+
+.progressFill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.insightMessage {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.detailsBtn {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.detailsBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(51, 153, 254, 0.3);
+}
+
+.chartIcon {
+  font-size: 1rem;
+}
+
+.tipsBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tipsBtn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: #f8fafc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wellnessInsights {
+    padding: 1.25rem;
+  }
+
+  .overallScore {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .scoreProgress {
+    width: 80px;
+    height: 80px;
+  }
+
+  .scoreInner {
+    width: 56px;
+    height: 56px;
+  }
+
+  .scoreNumber {
+    font-size: 1.5rem;
+  }
+
+  .scoreLabel {
+    font-size: 1.25rem;
+  }
+
+  .insightItem {
+    padding: 0.875rem;
+  }
+
+  .insightIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .wellnessInsights {
+    padding: 1rem;
+  }
+
+  .overallScore {
+    padding: 1rem;
+  }
+
+  .scoreProgress {
+    width: 70px;
+    height: 70px;
+  }
+
+  .scoreInner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .scoreNumber {
+    font-size: 1.25rem;
+  }
+
+  .scoreUnit {
+    font-size: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .insightTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
