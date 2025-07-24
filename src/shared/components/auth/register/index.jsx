@@ -137,11 +137,6 @@ export default function Registerform() {
                         transform: "translate(2.75rem, -9px) scale(0.75)",
                       },
                     }}
-                    onInput={(e) =>
-                      (e.target.value =
-                        e.target.value.charAt(0).toUpperCase() +
-                        e.target.value.slice(1).replace(/[^a-zA-Z]/g, ""))
-                    }
                   />
                 </div>
               </div>
@@ -170,11 +165,6 @@ export default function Registerform() {
                         transform: "translate(2.75rem, -9px) scale(0.75)",
                       },
                     }}
-                    onInput={(e) =>
-                      (e.target.value =
-                        e.target.value.charAt(0).toUpperCase() +
-                        e.target.value.slice(1).replace(/[^a-zA-Z ]/g, ""))
-                    }
                   />
                 </div>
               </div>

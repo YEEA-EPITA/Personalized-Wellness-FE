@@ -23,8 +23,18 @@ const usePlatformsStore = create(
         jiraTasksList: [],
         trelloBoardsList: [],
         trelloListsIds: [],
+        selectedPlatform: "",
+        selectedAccount: "",
+        selectedProject: "",
+        kanbanboardData: {},
+        trackTime: {},
+        setSelectedPlatform: (platform) => set({ selectedPlatform: platform }),
+        setSelectedAccount: (account) => set({ selectedAccount: account }),
+        setSelectedProject: (project) => set({ selectedProject: project }),
         setPlatforms: (data) => set({ platforms: data }),
         setAccounts: (data) => set({ accounts: data }),
+        setKanbanBoardData: (data) => set({ kanbanboardData: data }),
+
         removePlatform: (platformId) =>
           set((state) => ({
             platforms: state.platforms.filter(
@@ -41,6 +51,8 @@ const usePlatformsStore = create(
 
         setTrelloListsIds: (data) => set({ trelloListsIds: data }),
 
+        setTrackTime: (data) => set({ trackTime: data }),
+
         reset: () =>
           set({
             platforms: [],
@@ -51,8 +63,8 @@ const usePlatformsStore = create(
             error: null,
           }),
 
-          setCalendarStarttime: (date) => set({ calendarStarttime: date }),
-          setCalendarEndtime: (date) => set({ calendarEndtime: date }),
+        setCalendarStarttime: (date) => set({ calendarStarttime: date }),
+        setCalendarEndtime: (date) => set({ calendarEndtime: date }),
 
         generateGoogleAuthUrl: async () => {
           try {
@@ -358,6 +370,25 @@ const usePlatformsStore = create(
             set({ isLoading: false });
           }
         },
+
+        // Tracking Time
+        startTrackTime: async () => {
+          set({ isLoading: true, error: null });
+          try {
+            const response = await getRequest({ server: SERVERS.java.value })({
+              endpoint: `/api/tasks/changeWorkingStatus`,
+            });
+            showToastUtils({ type: "success", message: response.data.message });
+            get().setTrackTime(response.data.body);
+            return response.data.body;
+          } catch (err) {
+            showToastUtils({ type: "error", message: err.message });
+            set({ error: err });
+            throw err;
+          } finally {
+            set({ isLoading: false });
+          }
+        },
       }),
       {
         name: "platforms-storage",
@@ -368,7 +399,22 @@ const usePlatformsStore = create(
         // partialize: (state) => ({ platforms: state.platforms }),
         migrate: (persistedState, version) => {
           if (typeof persistedState !== "object" || !persistedState.platforms) {
-            return { platforms: [], calendarStarttime: new Date(), calendarEndtime: new Date(), isLoading: false, error: null };
+            return {
+              platforms: [],
+              calendarStarttime: new Date(),
+              calendarEndtime: new Date(),
+              selectedPlatform: "",
+              selectedAccount: "",
+              selectedProject: "",
+              jiraProjectsList: [],
+              jiraTasksList: [],
+              trelloBoardsList: [],
+              trelloListsIds: [],
+              accounts: [],
+              kanbanboardData: {},
+              isLoading: false,
+              error: null,
+            };
           }
           return persistedState;
         },

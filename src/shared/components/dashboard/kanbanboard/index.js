@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import SelectorComponent from "@/shared/components/general/selectorComponent";
 import usePlatformsStore from "@/shared/zustand/stores/usePlatformsStore";
 import { PLATFORMS } from "@/shared/constants/platforms";
-import { Box, Button, Grid, Typography, Stack } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import PauseIcon from "@mui/icons-material/Pause";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import KanbanBoard from "./kanbanboard";
+import WorkStateManager from "@/shared/components/dashboard/WorkStateManager";
 import {
   formatJiraTasksToKanban,
   formatTrelloTasksToKanban,
@@ -21,7 +20,6 @@ const TasksComponent = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [isFetchingTrelloLists, setIsFetchingTrelloLists] = useState(false);
   const [kanbanboardData, setKanbanBoardData] = useState({});
-  const [onBreak, setOnBreak] = useState(false);
 
   const {
     accounts,
@@ -119,10 +117,6 @@ const TasksComponent = () => {
     }
   };
 
-  const handleBreak = () => {
-    setOnBreak(!onBreak);
-  };
-
   return (
     <Box>
       <Grid container spacing={2} mb={2}>
@@ -189,36 +183,7 @@ const TasksComponent = () => {
           </Button>
         </Grid>
       </Grid>
-      <Box
-        mb={3}
-        display={"flex"}
-        justifyContent={"flex-end"}
-        alignItems="center"
-      >
-        {/* Status Indicator */}
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "bold",
-              color: onBreak ? "error.main" : "primary.main",
-              transition: "color 0.3s",
-            }}
-          >
-            {onBreak ? "On Break" : "Back to Work"}
-          </Typography>
-
-          {/* Button */}
-          <Button
-            variant={onBreak ? "outlined" : "contained"}
-            sx={{ textTransform: "none", borderRadius: "10px" }}
-            onClick={handleBreak}
-            startIcon={onBreak ? <PlayArrowIcon /> : <PauseIcon />}
-          >
-            {onBreak ? "Stop Break" : "Start Break"}
-          </Button>
-        </Stack>
-      </Box>
+      <WorkStateManager />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <KanbanBoard
           boardData={kanbanboardData}

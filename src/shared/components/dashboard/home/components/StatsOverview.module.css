@@ -1,0 +1,253 @@
+/* Stats Overview */
+.statsOverview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.iconContainer {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.statValue {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #10b98120;
+  color: #059669;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.trophyIcon,
+.fireIcon {
+  font-size: 0.875rem;
+}
+
+.statInfo {
+  margin-bottom: 1rem;
+}
+
+.statTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.statSubtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.progressContainer {
+  margin-top: 1rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+  position: relative;
+}
+
+.progressFill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progressText {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Skeleton Loading */
+.skeleton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeletonIcon {
+  width: 56px;
+  height: 56px;
+  background: #e2e8f0;
+  border-radius: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonText {
+  flex: 1;
+  height: 20px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .statsOverview {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .statCard {
+    padding: 1.25rem;
+  }
+
+  .iconContainer {
+    width: 48px;
+    height: 48px;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+
+  .number {
+    font-size: 2rem;
+  }
+
+  .statTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsOverview {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    padding: 1rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .statValue {
+    align-items: center;
+  }
+
+  .iconContainer {
+    width: 64px;
+    height: 64px;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+}
