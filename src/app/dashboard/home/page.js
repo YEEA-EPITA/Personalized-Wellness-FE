@@ -1,5 +1,5 @@
-import React from "react";
+import DashboardHome from "@/shared/components/dashboard/home";
 
 export default function Page() {
-  return <div>Dashboard</div>;
+  return <DashboardHome />;
 }

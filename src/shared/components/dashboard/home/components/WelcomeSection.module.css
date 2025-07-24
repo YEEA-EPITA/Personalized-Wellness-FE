@@ -1,0 +1,300 @@
+/* Welcome Section */
+.welcomeSection {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--wellness-primary) 100%
+  );
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.welcomeSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(100px, -100px);
+}
+
+.welcomeContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.userDetails {
+  flex: 1;
+}
+
+.greeting {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+  font-weight: 400;
+}
+
+.timeInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.dateTime {
+  text-align: right;
+}
+
+.date {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  opacity: 0.9;
+}
+
+.time {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+}
+
+.quickActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actionBtn {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.weatherWidget {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.weatherInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.weatherIcon {
+  font-size: 2rem;
+}
+
+.weatherDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.condition {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Skeleton Loading */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeletonText {
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonText:first-child {
+  width: 60%;
+}
+
+.skeletonText:last-child {
+  width: 40%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcomeSection {
+    padding: 1.5rem;
+  }
+
+  .welcomeContent {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .userInfo {
+    gap: 1rem;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .greeting {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .timeInfo {
+    align-items: flex-start;
+  }
+
+  .time {
+    font-size: 1.25rem;
+  }
+
+  .weatherWidget {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeSection {
+    padding: 1rem;
+  }
+
+  .userInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .avatarContainer {
+    align-self: center;
+  }
+
+  .userDetails {
+    text-align: center;
+    width: 100%;
+  }
+
+  .greeting {
+    font-size: 1.5rem;
+  }
+
+  .quickActions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .weatherInfo {
+    padding: 0.75rem 1rem;
+  }
+}
