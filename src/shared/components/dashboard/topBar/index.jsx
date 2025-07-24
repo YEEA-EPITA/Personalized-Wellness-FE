@@ -58,9 +58,17 @@ export default function TopBar({ drawerWidth, handleDrawerToggle }) {
             <Typography
               variant="h6"
               noWrap
-              fontWeight={600}
-              fontSize={16}
-              display={{ xs: "none", sm: "block" }}
+              sx={{
+                fontFamily: '"SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                fontWeight: 600,
+                fontSize: 20,
+                letterSpacing: "0.2px",
+                textRendering: "optimizeLegibility",
+                WebkitFontSmoothing: "antialiased",
+                MozOsxFontSmoothing: "grayscale",
+                color: "#1a202c",
+                display: { xs: "none", sm: "block" }
+              }}
             >
               {isClient ? name : ""}
             </Typography>

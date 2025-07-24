@@ -23,34 +23,76 @@ const CalendarStatsBar = ({ events, onConfigureClick, onRefreshClick }) => {
           Click on events to view details
         </span>
       </div>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', gap: '12px' }}>
         <button 
           onClick={onConfigureClick}
+          title="Configure Calendar"
           style={{
-            padding: '5px 15px',
-            backgroundColor: '#6c757d',
-            color: 'white',
+            padding: '12px',
+            backgroundColor: '#e3f2fd',
+            color: '#1976d2',
             border: 'none',
-            borderRadius: '3px',
+            borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: '12px'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '44px',
+            height: '44px',
+            boxShadow: '0 2px 8px rgba(25, 118, 210, 0.15)',
+            transition: 'all 0.2s ease-in-out',
+            outline: 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = '#bbdefb';
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 4px 12px rgba(25, 118, 210, 0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = '#e3f2fd';
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = '0 2px 8px rgba(25, 118, 210, 0.15)';
+          }}
+          onMouseDown={(e) => {
+            e.target.style.transform = 'translateY(0)';
           }}
         >
-          ⚙️ Configure
+          <span style={{ fontSize: '18px' }}>⚙️</span>
         </button>
         <button 
           onClick={onRefreshClick}
+          title="Refresh Events"
           style={{
-            padding: '5px 15px',
-            backgroundColor: '#28a745',
-            color: 'white',
+            padding: '12px',
+            backgroundColor: '#f1f8e9',
+            color: '#388e3c',
             border: 'none',
-            borderRadius: '3px',
+            borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: '12px'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '44px',
+            height: '44px',
+            boxShadow: '0 2px 8px rgba(56, 142, 60, 0.15)',
+            transition: 'all 0.2s ease-in-out',
+            outline: 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = '#dcedc8';
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 4px 12px rgba(56, 142, 60, 0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = '#f1f8e9';
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = '0 2px 8px rgba(56, 142, 60, 0.15)';
+          }}
+          onMouseDown={(e) => {
+            e.target.style.transform = 'translateY(0)';
           }}
         >
-          🔄 Refresh Events
+          <span style={{ fontSize: '18px' }}>🔄</span>
         </button>
       </div>
     </div>

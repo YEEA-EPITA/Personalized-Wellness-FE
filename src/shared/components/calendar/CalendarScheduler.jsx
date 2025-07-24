@@ -35,16 +35,6 @@ const CalendarScheduler = () => {
     };
   });  
 
-  useEffect(() => {
-  console.log("🔄 setCurrentViewDates triggered:emmy1710", currentViewDates);
-}, [currentViewDates]);
-
-      // console.log('emmy test currectViewDates', selectedDate);
-
-  // const [currentViewDates, setCurrentViewDates] = useState({
-  //   startDate: initialStartTime,
-  //   endDate: initialEndTime,
-  // });
 
   console.log('🔄 Initial currentViewDates:', currentViewDates);
   const [calendarConfig, setCalendarConfig] = useState(() => {
@@ -79,46 +69,8 @@ const CalendarScheduler = () => {
       },
       google: { selections: [] }, // Support new Google config structure
       email: { account: null, filters: {} }, // Support email config
-      // startDate: startOfYear.toISOString().split('T')[0], // YYYY-MM-DD format
-      // endDate: endOfYear.toISOString().split('T')[0], // YYYY-MM-DD format
-      // defaultView: 'Week',
-      // refreshInterval: 300000, // 5 minutes
-      // showWeekends: false,
-      // workingHours: {
-      //   start: '09:00',
-      //   end: '17:00'
-      // }
     };
   });
-
-  // Convert date format for the hook - memoized to prevent unnecessary re-renders
-  // const hookConfig = useMemo(() => {
-  //   console.log('called again 999', currentViewDates);
-  //   console.log('🔄 hookConfig calendarConfig:', calendarConfig);
-    
-  //   return {
-  //     jiraEmail: calendarConfig.jira.jiraEmail,
-  //     jiraProjects: calendarConfig.jira.jiraProjects,
-  //     trelloEmail: calendarConfig.trello.trelloEmail,
-  //     trelloLists: calendarConfig.trello.trelloLists,
-  //     jira: calendarConfig.jira || { selections: [] },
-  //     trello: calendarConfig.trello || { selections: [] },
-  //     google: calendarConfig.google || { selections: [] },
-  //     email: calendarConfig.email || { account: null, filters: {} },
-  //     startDate: `${currentViewDates.startDate}T00:00:00.000+0100`,
-  //     endDate: `${currentViewDates.endDate}T23:59:59.000+0100`
-  //   };
-  // }, [
-  //   calendarConfig.jira.jiraEmail,
-  //   calendarConfig.jira.jiraProjects,
-  //   calendarConfig.trello.trelloEmail,
-  //   calendarConfig.trello.trelloLists,
-  //   calendarConfig.jira,
-  //   calendarConfig.trello,
-  //   calendarConfig.google,
-  //   calendarConfig.email, // Add email config to dependencies
-  //   // currentViewDates,// Changed from calendarConfig dates
-  // ]);
 
   const {
     events,

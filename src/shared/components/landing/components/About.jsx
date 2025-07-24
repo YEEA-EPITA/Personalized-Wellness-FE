@@ -39,40 +39,40 @@ const About = () => {
 
   const team = [
     {
-      icon: <FaRocket />,
-      name: "Team Member 1",
-      role: "Project Lead & Full-Stack Developer",
-      company: "EPITA Action Learning Project",
+      icon: <img src="/images/team/arbaz.dogar.jpeg" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />,
+      name: "Muhammad Arbaz Dogar",
+      role: "Node.js Backend Developer & Frontend Developer",
+      company: "EPITA",
       social: {
         linkedin: "#",
         github: "#",
       },
     },
     {
-      icon: <FaCode />,
-      name: "Team Member 2",
-      role: "Frontend Developer & UI/UX Designer",
-      company: "EPITA Action Learning Project",
+      icon: <img src="/images/team/huong-giang.dinh.jpeg" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />,
+      name: "Huong-giang (Emmy) Dinh",
+      role: "Java Backend Developer & Frontend Developer",
+      company: "EPITA",
       social: {
         linkedin: "#",
         github: "#",
       },
     },
     {
-      icon: <FaCog />,
-      name: "Team Member 3",
-      role: "Backend Developer & System Architect",
-      company: "EPITA Action Learning Project",
+      icon: <img src="/images/team/yeowon.kim.jpeg" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />,
+      name: "Yeowon Kim",
+      role: "Java Backend Developer & Node.js Developer",
+      company: "EPITA",
       social: {
         linkedin: "#",
         github: "#",
       },
     },
     {
-      icon: <FaLightbulb />,
-      name: "Team Member 4",
-      role: "Product Designer & Research Specialist",
-      company: "EPITA Action Learning Project",
+      icon: <img src="/images/team/efe.jpeg" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />,
+      name: "Akporowhe Efe",
+      role: "Project Manager",
+      company: "EPITA",
       social: {
         linkedin: "#",
         github: "#",
