@@ -1,5 +1,5 @@
-import React from "react";
+import ProfilePage from "@/shared/components/dashboard/profile";
 
 export default function Profile() {
-  return <div>Profile</div>;
+  return <ProfilePage />;
 }
